@@ -17,7 +17,7 @@ function App() {
     (
         async () => {
             
-            const response = await fetch('http://localhost:8000/api-user/user',{
+            const response = await fetch('https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co/api-user/user',{
             // mode:'no-cors',-
             headers:{'Content-Type':'application/json'},
             credentials:'include',
