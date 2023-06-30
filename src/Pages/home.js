@@ -13,7 +13,7 @@ function Home(){
     const [user,setUser] = useState('');
 
     async function popularPodcast(){
-        const response = await fetch('https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co/api-podcast/popular');
+        const response = await fetch('http://localhost:8000/api-podcast/popular');
         const content = await response.json();
         console.log(content);
         setPopulardata(content);
@@ -38,7 +38,7 @@ function Home(){
         (
             async () => {
                 
-                const response = await fetch('https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co/api-user/user',{
+                const response = await fetch('http://localhost:8000/api-user/user',{
                 // mode:'no-cors',-
                 headers:{'Content-Type':'application/json'},
                 credentials:'include',
