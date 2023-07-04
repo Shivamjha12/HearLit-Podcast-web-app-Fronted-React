@@ -35,6 +35,7 @@ function Login(){
         {
         console.log(content,"here is login page content");
         navigate('/');
+        navigate(0);
         }
         
     }

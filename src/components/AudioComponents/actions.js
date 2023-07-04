@@ -18,6 +18,8 @@ function Actions({actionData}){
                     });
                     const response1 = await fetch(`http://127.0.0.1:8000/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`);
                     const data = await response1.json();
+                    console.log("Useffect Loaded first time")
+                    console.log(isfav,"Isfav variable")
                     if(data.is_favorite){
                         setfavbtn("fa fa-heart fa-2x");
                          setisfav(1);
@@ -26,11 +28,14 @@ function Actions({actionData}){
                         setfavbtn("far fa-heart fa-2x");
                         setisfav(0);
                     }
+                    console.log(data,"Data is loading...........")
+                    console.log(isfav,"Isfav variable")
+                    console.log("Useffect Loaded first time")
                     
                 }
                 
             )();
-        },[isfav]
+        },[]
         );
 
 
@@ -42,7 +47,7 @@ function Actions({actionData}){
             headers: {
                  "Content-Type": "application/json"
             },
-            body: JSON.stringify(actionData) 
+            body: JSON.stringify(actionData)
             
         });
             console.log(JSON.stringify(actionData), "~~~~~~~~~~~~~~~~~~~~~~~~here is json~~~~~~~~~~~~~~~~~~")
@@ -53,8 +58,18 @@ function Actions({actionData}){
             setisfav(0);
         }
         else{
+            const response = await fetch(`http://127.0.0.1:8000/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`,
+            {
+            method: "POST",
+            headers: {
+                 "Content-Type": "application/json"
+            },
+            body: JSON.stringify(actionData) 
+        
+        });
+        console.log(JSON.stringify(actionData))
             setfavbtn("fa fa-heart fa-2x");
-            setisfav(0);
+            setisfav(1);
         }
     }
     return( <div className="action-main">
@@ -66,5 +81,6 @@ function Actions({actionData}){
         </div>
         
     )
+    
 }
 export default Actions;

@@ -5,8 +5,9 @@ import Audioplayer from "../components/AudioPlayer"
 import Actions from "../components/AudioComponents/actions";
 import Controls from "../components/AudioComponents/controls";
 import { useLocation,Link, useNavigate, useParams } from "react-router-dom";
+import Header from '../components/Header';
 // import { useLocation } from 'react-router-dom';
-function Podcastpage(){
+function Podcastpage({user}){
     const post = {
         "user": 2,
         "title": "Finshots Daily",
@@ -56,6 +57,7 @@ function Podcastpage(){
     return(
     <div>
         <div className="podcastpagemain1">
+        <Header user={user} />
         <Container className="podcastpagemain">
             <Row className="podcastpagerow1">
                 <Col md="auto">

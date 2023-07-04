@@ -4,7 +4,8 @@ import Logo from "../assets/Logo.png";
 import {useNavigate} from "react-router-dom";
 function Header(props) {
     const navigate = useNavigate();
-    async function handleLogout(){
+    async function handleLogout(e){
+      e.preventDefault();
       const response = await fetch('http://localhost:8000/api-user/logout',{
         method: "POST",
         headers: {
@@ -13,8 +14,10 @@ function Header(props) {
         credentials:'include',
         body: JSON.stringify("")
         });
+
         navigate('login/');
         console.log(response);
+        navigate(0);
 
     }
 
@@ -33,9 +36,11 @@ function Header(props) {
             <Nav className="me-auto">
               {props.user?(
               <>
-              <Nav.Link onClick={(e)=>{console.log(e.target.value);}}>About Us</Nav.Link>
+              <Nav.Link onClick={(e)=>{navigate('/mypodcasts')}}>Your Podcast</Nav.Link>
+              <Nav.Link onClick={(e)=>{navigate('/addpodcast')}}>Add Podcast</Nav.Link>
+              <Nav.Link onClick={(e)=>{navigate('/about')}}>About Us</Nav.Link>
               <Nav.Link onClick={(e) =>{
-                handleLogout();
+                handleLogout(e);
                 }}>Log out</Nav.Link>
               </>)
               :(

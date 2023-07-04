@@ -1,10 +1,13 @@
 import './App.css';
 import React,{ useState,useEffect } from "react";
 import Login from './Pages/login_page';
+import AboutPage from './Pages/about';
 import Signup from './Pages/signup_page';
 import Home from './Pages/home';
+import Userpodcasts from './Pages/userpodcasts';
 import Header from './components/Header';
 import Podcastpage from './Pages/podcast_content';
+import AddPodcast from './Pages/addPodcast';
 import loader from "./assets/loader.gif";
 // import podcast_card from './components/podcast_card';
 import {useNavigate} from "react-router-dom";
@@ -44,10 +47,13 @@ function App() {
   return (
     <>
     <Routes>
+    <Route path="/about" element={<AboutPage user={user} />}/> 
+    <Route path="/mypodcasts" element={<Userpodcasts user={user} />}/> 
+    <Route path="/addpodcast" element={<AddPodcast user1={user} />}/> 
     <Route path="/" element={user==='notUser'?(<Login/>):(<Home/>)}/> 
     <Route path="/register" element= {user==='notUser'?(<Signup/>):(<Home/>)}/>
     <Route path="/login" element={user==='notUser'?(<Login/>):(<Home/>)}/>
-    <Route path="/podcast/:podcastID" element= {<Podcastpage/>} />
+    <Route path="/podcast/:podcastID" element= {<Podcastpage user={user} />} />
     </Routes>
     </>
   );
