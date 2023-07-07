@@ -17,15 +17,16 @@ function Home() {
   const [isSearch, setIsSearch] = useState(false);
   const [user, setUser] = useState('');
   const [meraToken,setMeraToken] = useState('None')
+  const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
   async function popularPodcast() {
-    const response = await fetch(`http://localhost:8000/api-podcast/podcastFav/${user}/`);
+    const response = await fetch(`${production_url}/api-podcast/podcastFav/${user}/`);
     const content = await response.json();
     console.log(content);
     setfavdata(content);
     console.log(setfavdata, "This is setfavdata variable");
   }
   async function favPodcast() {
-    const response = await fetch('http://localhost:8000/api-podcast/popular');
+    const response = await fetch(`${production_url}/api-podcast/popular`);
     const content = await response.json();
     console.log(content);
     setPopulardata(content);
@@ -35,7 +36,7 @@ function Home() {
   async function handleSearch(e) {
     e.preventDefault();
     setIsSearch(true);
-    const response = await fetch(`http://localhost:8000/api-podcast/podcast/?search=${search}`);
+    const response = await fetch(`${production_url}/api-podcast/podcast/?search=${search}`);
     const content = await response.json();
     setPodcast(content);
     console.log(podcast, "This is Searched podcasts");
@@ -52,7 +53,7 @@ function Home() {
       async () => {
         const token = Cookies.get('meraToken');
         setMeraToken(token)
-        const response = await fetch(`http://localhost:8000/api-user/user/${meraToken}`, {
+        const response = await fetch(`${production_url}/api-user/user/${meraToken}`, {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
         });

@@ -5,18 +5,18 @@ function Actions({actionData}){
     const[isfav,setisfav]=useState(0);
     const [favbtn,setfavbtn]=useState("far fa-heart fa-2x");
     const [response,setResponse]=useState('');
-
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     useEffect(
         ()=>{
             (
                 async () => {
                     
-                    const response = await fetch('http://localhost:8000/api-user/user',{
+                    const response = await fetch(`${production_url}/api-user/user`,{
                     // mode:'no-cors',-
                     headers:{'Content-Type':'application/json'},
                     credentials:'include',
                     });
-                    const response1 = await fetch(`http://127.0.0.1:8000/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`);
+                    const response1 = await fetch(`${production_url}/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`);
                     const data = await response1.json();
                     console.log("Useffect Loaded first time")
                     console.log(isfav,"Isfav variable")
@@ -41,7 +41,7 @@ function Actions({actionData}){
 
     async function handleFav(){
         if(isfav){
-            const response = await fetch(`http://127.0.0.1:8000/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`,
+            const response = await fetch(`${production_url}/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`,
             {
             method: "POST",
             headers: {
@@ -58,7 +58,7 @@ function Actions({actionData}){
             setisfav(0);
         }
         else{
-            const response = await fetch(`http://127.0.0.1:8000/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`,
+            const response = await fetch(`${production_url}/api-podcast/podcastFav/${actionData.postid}/${actionData.username}/`,
             {
             method: "POST",
             headers: {

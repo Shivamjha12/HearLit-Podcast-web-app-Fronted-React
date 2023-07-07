@@ -10,6 +10,8 @@ function Signup(){
     const [email,setEmail]= useState('');
     const [password,setPassword]= useState('');
     const [confirmpassword,setConfirmpassword]= useState('');
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+
     const onSubmit = async (e)=>{
         e.preventDefault();
         if(password=== confirmpassword){
@@ -19,7 +21,7 @@ function Signup(){
             password
         }
         console.log(JSON.stringify(signupData));
-        const response = await fetch('http://localhost:8000/api-user/register',{
+        const response = await fetch(`${production_url}/api-user/register`,{
             method: "POST",
             headers: {
                  "Content-Type": "application/json"

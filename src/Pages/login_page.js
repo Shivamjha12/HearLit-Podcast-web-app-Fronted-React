@@ -8,7 +8,7 @@ function Login(){
     // const [jwt,setJwt]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
-
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     const onSubmit = async (e)=>{
         e.preventDefault();
         const signupData = {
@@ -16,7 +16,7 @@ function Login(){
             password
         }
         console.log(JSON.stringify(signupData));
-        const response = await fetch('http://localhost:8000/api-user/login',{
+        const response = await fetch(`${production_url}/api-user/login`,{
             method: "POST",
             headers: {
                  "Content-Type": "application/json"

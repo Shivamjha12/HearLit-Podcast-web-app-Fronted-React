@@ -14,7 +14,7 @@ import {useNavigate} from "react-router-dom";
 import { Route, Routes,Navigate,Redirect  } from "react-router-dom";
 import Cookies from 'js-cookie';
 function App() {
-
+  const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
   const [user,setUser] = useState(null);
   const navigate = useNavigate();
   const [meraToken,setMeratoken] = useState('None');
@@ -31,7 +31,7 @@ function App() {
             // Cookies.remove('name');
             // const fname = Cookies.get('name');
             // console.log(name,"second","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX----------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-            const response = await fetch(`http://localhost:8000/api-user/user/${meraToken}`,{
+            const response = await fetch(`${production_url}/api-user/user/${meraToken}`,{
             // mode:'no-cors',
             headers:{'Content-Type':'application/json'},
             credentials:'include',

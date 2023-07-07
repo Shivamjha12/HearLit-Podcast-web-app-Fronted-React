@@ -16,7 +16,7 @@ function AddPodcast({user1}){
     const [editPodcastdata,setEditpodcastdata] = useState([]);
     const {editID} = useParams()
     const baseurl = 'http://localhost:8000';
-
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     useEffect(()=>{
         setUser(user1)
         if(editID){
@@ -27,7 +27,7 @@ function AddPodcast({user1}){
     },[user,editID]);
     async function EditPodcastData(){
         try{
-        const response = await fetch(`http://localhost:8000/api-podcast/podcast/${editID}`);
+        const response = await fetch(`${production_url}/api-podcast/podcast/${editID}`);
         const content = await response.json();
         setEditpodcastdata(content);
         console.log(editPodcastdata,"the data is set")
@@ -57,7 +57,7 @@ function AddPodcast({user1}){
                 "description": description==='' ? editPodcastdata.description : description,
                 "speaker": speakername===''? editPodcastdata.speaker: speakername,
               };
-            const url = `http://localhost:8000/api-podcast/podcast/update/${editID}`;
+            const url = `${production_url}/api-podcast/podcast/update/${editID}`;
             const response = await fetch(url, {
                 method: 'POST',
                 body: JSON.stringify(editformData),
@@ -76,7 +76,7 @@ function AddPodcast({user1}){
             console.log(editPodcastdata," value of editPodcastdata")
         }
         else{
-            const url = 'http://localhost:8000/api-podcast/podcast/add/';
+            const url = `${production_url}/api-podcast/podcast/add/`;
             const response = await fetch(url, {
                 method: 'POST',
                 body: formData,
@@ -115,7 +115,7 @@ function AddPodcast({user1}){
                 </Form.Group>
                 {
                 id===''?<Form.Group className="mb-3">
-                    {id && (<img style={{"height":"5rem","width":"5rem"}} src={`${baseurl}${editPodcastdata.thumbnail}`} />) }
+                    {id && (<img style={{"height":"5rem","width":"5rem"}} src={`${production_url}${editPodcastdata.thumbnail}`} />) }
                     <Form.Label>{id===''?"Add Thumbnail":"Current Thumbnail"}</Form.Label>
                     <Form.Control
                         type="file"
@@ -157,7 +157,7 @@ function AddPodcast({user1}){
                     <Form.Label>{id===''?"Add File":"Edit File"}</Form.Label>
                     {id && ( <div className="edit-form-user">
                         <p>Current Audio</p>
-                        <audio  src={`${baseurl}${editPodcastdata.file}`} controls/> 
+                        <audio  src={`${production_url}${editPodcastdata.file}`} controls/> 
                     </div>)
                     
 

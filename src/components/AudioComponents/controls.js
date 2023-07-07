@@ -6,6 +6,7 @@ function Controls({post}) {
   const [toggleRepeat,setToggleRepeat]=useState()
   const { title, thumbnail, likes, speaker, file} = post;
   const baseurl = 'http://localhost:8000';
+  const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
   function handleEnd(){
     console.log("end");
   }
@@ -60,7 +61,7 @@ function Controls({post}) {
         ref={audio}
         type="audio/mpeg"
         preload="true"
-        src={`${baseurl}${file}`}
+        src={`${production_url}${file}`}
       />
       <div className="vlme">
         <span className="volum">

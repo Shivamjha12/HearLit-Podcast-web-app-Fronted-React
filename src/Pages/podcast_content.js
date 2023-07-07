@@ -8,6 +8,7 @@ import { useLocation,Link, useNavigate, useParams } from "react-router-dom";
 import Header from '../components/Header';
 // import { useLocation } from 'react-router-dom';
 function Podcastpage({user}){
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     const post = {
         "user": 2,
         "title": "Finshots Daily",
@@ -30,7 +31,7 @@ function Podcastpage({user}){
     console.log(actionData,"actiondata <------------------------------------------------------------->");
     async function popularPodcast(){
         try{
-        const response = await fetch(`http://localhost:8000/api-podcast/podcast/${podcastID}`);
+        const response = await fetch(`${production_url}/api-podcast/podcast/${podcastID}`);
         const content = await response.json();
         console.log(content);
         setPodcastdata(content);
@@ -44,6 +45,7 @@ function Podcastpage({user}){
     }
     const { title, thumbnail, description, type, likes, speaker, file} = podcastdata;
     const baseurl = 'http://localhost:8000';
+    
     const songsdata = {
         "title": title,
         "url": file
@@ -61,7 +63,7 @@ function Podcastpage({user}){
         <Container className="podcastpagemain">
             <Row className="podcastpagerow1">
                 <Col md="auto">
-                <img className="podcastpageimg" src={`${baseurl}${thumbnail}`} />
+                <img className="podcastpageimg" src={`${production_url}${thumbnail}`} />
                 </Col>
                 <Col className="podcastpagecol1" md={8}>
                 <p className="podcastpagetype">{type}</p>

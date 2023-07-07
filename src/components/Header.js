@@ -5,9 +5,10 @@ import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
 function Header(props) {
     const navigate = useNavigate();
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     async function handleLogout(e){
       e.preventDefault();
-      const response = await fetch('http://localhost:8000/api-user/logout',{
+      const response = await fetch(`${production_url}/api-user/logout`,{
         method: "POST",
         headers: {
              "Content-Type": "application/json"

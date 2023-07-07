@@ -16,6 +16,7 @@ function UserPodcasts({post,email}){
     const navigate = useNavigate();
     const { title,postid,description, thumbnail, likes, file} = post;
     const baseurl = 'http://localhost:8000';
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     console.log(email,"<------------email---------------------------->")
     return(
     <Col md={12}>
@@ -23,7 +24,7 @@ function UserPodcasts({post,email}){
     <Card className="userpodcastCard" style={{"height":"8rem", "width":"80rem","margin":"1rem 1rem 1rem 8rem"}}>
       <Card.Body>
         <div className="userpodcastimgdiv">
-        <img className="userpodcastimage"  src={`${baseurl}${thumbnail}`} alt="Image is not loaded"/>
+        <img className="userpodcastimage"  src={`${production_url}${thumbnail}`} alt="Image is not loaded"/>
         </div>
         <div className="userpodcasttitle" >
         {description.slice(0, 100)}

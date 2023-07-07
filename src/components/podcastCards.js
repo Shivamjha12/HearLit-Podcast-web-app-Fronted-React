@@ -15,10 +15,11 @@ function Podcasts({post,email}){
     const navigate = useNavigate();
     const { title,postid, thumbnail, likes, file} = post;
     const baseurl = 'http://localhost:8000';
+    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     console.log(email,"<------------email---------------------------->")
     return(
     <Card className="podcastCard" style={{"margin":"0rem 0.5rem 0rem 0rem"}}>
-      <Card.Img className="podcastImg" variant="top" style={{"height":"15rem", "width":"15rem"}} src={`${baseurl}${thumbnail}`} />
+      <Card.Img className="podcastImg" variant="top" style={{"height":"15rem", "width":"15rem"}} src={`${production_url}${thumbnail}`} />
       <Card.Body>
         <Card.Title>{title} </Card.Title>
         <Card.Text>{likes} people like this</Card.Text>
