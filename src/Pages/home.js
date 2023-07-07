@@ -6,6 +6,7 @@ import axios from '../api/axios';
 import Podcasts from '../components/podcastCards';
 import favPodcast from './favPodcast';
 // import './app.css';
+import Cookies from 'js-cookie';
 
 function Home() {
   const [populardata, setPopulardata] = useState([]);
@@ -15,7 +16,7 @@ function Home() {
   const [search, setSearch] = useState('');
   const [isSearch, setIsSearch] = useState(false);
   const [user, setUser] = useState('');
-
+  const [meraToken,setMeraToken] = useState('None')
   async function popularPodcast() {
     const response = await fetch(`http://localhost:8000/api-podcast/podcastFav/${user}/`);
     const content = await response.json();
@@ -49,8 +50,9 @@ function Home() {
   useEffect(() => {
     (
       async () => {
-
-        const response = await fetch('http://localhost:8000/api-user/user', {
+        const token = Cookies.get('meraToken');
+        setMeraToken(token)
+        const response = await fetch(`http://localhost:8000/api-user/user/${meraToken}`, {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
         });

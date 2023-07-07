@@ -1,20 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import Header from '../components/Header';
+import Cookies from 'js-cookie';
+import { useNavigate,useParams } from 'react-router-dom';
+
 function AddPodcast({user1}){
+    const navigate = useNavigate();
     const [user,setUser] = useState('')
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('')
     const [speakername, setSpeakername] = useState('')
     const [imagefile,setimagefile] = useState(null)
     const [audiofile,setaudiofile] = useState(null)
+    const [id,setId] = useState('')
+    const [editPodcastdata,setEditpodcastdata] = useState([]);
+    const {editID} = useParams()
+    const baseurl = 'http://localhost:8000';
 
     useEffect(()=>{
         setUser(user1)
-    },[user]);
+        if(editID){
+            setId(editID);
+            EditPodcastData().then();
+            console.log(title," - ",description," - ",speakername," getfunction2")
+        }
+    },[user,editID]);
+    async function EditPodcastData(){
+        try{
+        const response = await fetch(`http://localhost:8000/api-podcast/podcast/${editID}`);
+        const content = await response.json();
+        setEditpodcastdata(content);
+        console.log(editPodcastdata,"the data is set")
+
+        
+        }
+        catch(error){
+            console.log(error);
+            console.log("error happened");
+        }
+        
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(title," - ",description," - ",speakername," getfunction3")
         const formData = new FormData();
         formData.append('formuser', user);
         formData.append('title', title);
@@ -22,19 +51,43 @@ function AddPodcast({user1}){
         formData.append('speakername',speakername);
         formData.append('imagefile', imagefile);
         formData.append('audiofile', audiofile);
+        if(editID){
+            const editformData = {
+                "title": title==='' ? editPodcastdata.title : title,
+                "description": description==='' ? editPodcastdata.description : description,
+                "speaker": speakername===''? editPodcastdata.speaker: speakername,
+              };
+            const url = `http://localhost:8000/api-podcast/podcast/update/${editID}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(editformData),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            console.log(editformData,"--------------------here is editformdata-----------------------")
+            console.log(response,"Response from url");
+            if(response.status === 201){
+                alert('Edits saved successfully!');
+                navigate('/mypodcasts');
 
-        // const image = str(imagefile).split('.')
-        console.log(imagefile);
-        const url = 'http://localhost:8000/api-podcast/podcast/add/';
-        const response = await fetch(url, {
-            method: 'POST',
-            body: formData,
-        });
+            }else { alert('Something went wrong!'); }
+            console.log(editPodcastdata)
+            console.log(editPodcastdata," value of editPodcastdata")
+        }
+        else{
+            const url = 'http://localhost:8000/api-podcast/podcast/add/';
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData,
+                
+            });
 
-        if (response.status === 201) {
-            alert('Post created successfully!');
-        } else {
-            alert('Something went wrong!');
+            if(response.status === 201){
+                const token = Cookies.get('meraToken');
+                console.log(token,"Hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+                alert('Post created successfully!');
+            }else { alert('Something went wrong!'); }
         }
 
 
@@ -46,7 +99,7 @@ function AddPodcast({user1}){
         <Header user={user1} />
         <Container>
                 <div className="podcast_form my-5">
-                <h3>Add your podcast</h3>
+                {id===''?<h3>Add your podcast</h3>:<h3>Edit Your Podcast Details</h3>}
                 <Form onSubmit={(e)=>{handleSubmit(e)}}>
                 <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
@@ -54,32 +107,35 @@ function AddPodcast({user1}){
                         type="text"
                         required
                         name="title"
+                        defaultValue={id && editPodcastdata.title}
                         placeholder='Enter Your Title'
-                        defaultValue={""}
                         onChange={(e)=>{setTitle(e.target.value)}}
                     >
                     </Form.Control>
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Thumbnail</Form.Label>
+                {
+                id===''?<Form.Group className="mb-3">
+                    {id && (<img style={{"height":"5rem","width":"5rem"}} src={`${baseurl}${editPodcastdata.thumbnail}`} />) }
+                    <Form.Label>{id===''?"Add Thumbnail":"Current Thumbnail"}</Form.Label>
                     <Form.Control
                         type="file"
-                        required
+                        {...id===''?"required":{}}
                         name="thumbnail"
-                        placeholder='Add your Thumbnail'
+                        placeholder={id===''?"Add your Thumbnail":"Add new thumbnail"}
                         defaultValue={""}
                         onChange={(e)=>{setimagefile(e.target.files[0])}}
                     >
                     </Form.Control>
-                </Form.Group>
+                </Form.Group>:<div><p>Currently <strong>thumbnail</strong> can't be edit</p></div>
+                }
                 <Form.Group className="mb-3">
                     <Form.Label>Description</Form.Label>
                     <Form.Control
-                        type="text"
-                        required
+                        as="textarea"
+                        {...id===''?"required":{}}
                         name="description"
                         placeholder='Add description'
-                        defaultValue={""}
+                        defaultValue={id && editPodcastdata.description}
                         onChange={(e)=>{setDescription(e.target.value)}}
                     >
                     </Form.Control>
@@ -88,34 +144,44 @@ function AddPodcast({user1}){
                     <Form.Label>Speaker Name</Form.Label>
                     <Form.Control
                         type="text"
-                        required
+                        {...id===''?"required":{}}
                         name="speakername"
                         placeholder='speakername'
-                        defaultValue={""}
+                        defaultValue={id && editPodcastdata.speaker}
                         onChange={(e)=>{setSpeakername(e.target.value)}}
                     >
                     </Form.Control>
                 </Form.Group>
-                <Form.Group className="mb-3">
-                    <Form.Label>Add File</Form.Label>
+                {
+                id===''?<Form.Group className="mb-3">
+                    <Form.Label>{id===''?"Add File":"Edit File"}</Form.Label>
+                    {id && ( <div className="edit-form-user">
+                        <p>Current Audio</p>
+                        <audio  src={`${baseurl}${editPodcastdata.file}`} controls/> 
+                    </div>)
+                    
+
+                   }
                     <Form.Control
                         type="file"
-                        required
+                        {...id===''?"required":{}}
                         name="podcastfile"
                         placeholder='podcastfile'
                         defaultValue={""}
                         onChange={(e)=>{setaudiofile(e.target.files[0])}}
                     >
                     </Form.Control>
-                </Form.Group>
+                </Form.Group>:<div><p>Currently <strong>Audio File</strong> can't be edit</p></div>
+                }
                 <Button varient="primary" type="submit" className="submitButton">
-                    Submit
+                    {id===''?"Submit":"Save Edit"}
                 </Button>
                 </Form>
                 </div>
                 
             </Container>
-    </div>)
+    </div>
+    )
 }
 
 export default AddPodcast;

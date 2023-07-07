@@ -34,7 +34,7 @@ function UserPodcasts({post,email}){
           {description.slice(0, 100)}
         </p>
          <div className="userpodcastbutton" >
-        <Button onClick={()=>{navigate(`/podcast/${postid}`,{ state: { prop1: email} });}} style={{"height":"3rem","width":"5rem", "margin":"-1.5rem 5rem 0rem 0rem"}} variant="primary">Edit</Button>
+        <Button onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} style={{"height":"3rem","width":"5rem", "margin":"-1.5rem 5rem 0rem 0rem"}} variant="primary">Edit</Button>
         </div>
     </Card.Body>
     </Card>

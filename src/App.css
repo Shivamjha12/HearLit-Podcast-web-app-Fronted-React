@@ -210,7 +210,12 @@ audio {
   height: auto;
   margin: 1rem;
 }
-
+audio{
+  width: 20rem;
+  height: 3rem;
+  border-radius: 0%;
+  background: #eaeaea;
+}
 /*
 css of audio player --------------------------------------------------------------------------------------------
 */

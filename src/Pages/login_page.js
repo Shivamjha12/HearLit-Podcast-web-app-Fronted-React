@@ -2,9 +2,10 @@ import React,{useState} from "react";
 import { Form,Container, Row, Col, Button } from "react-bootstrap";
 import Header from '../components/Header';
 import {useNavigate} from "react-router-dom";
-
+import Cookies from 'js-cookie';
 function Login(){
     const navigate = useNavigate();
+    // const [jwt,setJwt]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
 
@@ -33,7 +34,12 @@ function Login(){
         }
         else
         {
-        console.log(content,"here is login page content");
+        
+        // setJwt(content.jwt)
+        // console.log(jwt)
+        Cookies.set('meraToken', content.jwt, { expires: 24*60*60 });
+        // Cookies.set('jwt', jwt, { expires: 60 * 60 * 24 * 1, httpOnly: true });
+        // console.log(content.jwt," here is the jwt-> ",jwt,"here is login page content");
         navigate('/');
         navigate(0);
         }

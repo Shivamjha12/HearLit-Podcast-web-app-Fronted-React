@@ -12,16 +12,27 @@ import loader from "./assets/loader.gif";
 // import podcast_card from './components/podcast_card';
 import {useNavigate} from "react-router-dom";
 import { Route, Routes,Navigate,Redirect  } from "react-router-dom";
+import Cookies from 'js-cookie';
 function App() {
 
   const [user,setUser] = useState(null);
   const navigate = useNavigate();
+  const [meraToken,setMeratoken] = useState('None');
+
   useEffect(()=>{
     (
         async () => {
-            
-            const response = await fetch('http://localhost:8000/api-user/user',{
-            // mode:'no-cors',-
+            // Cookies.set('name', 'Shivam Jha', { expires: 7 });
+            const token = Cookies.get('meraToken');
+            console.log(token);
+            setMeratoken(token);
+            // const name = Cookies.get('name');
+            // console.log(name,"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX----------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            // Cookies.remove('name');
+            // const fname = Cookies.get('name');
+            // console.log(name,"second","XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX----------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+            const response = await fetch(`http://localhost:8000/api-user/user/${meraToken}`,{
+            // mode:'no-cors',
             headers:{'Content-Type':'application/json'},
             credentials:'include',
             });
@@ -50,6 +61,7 @@ function App() {
     <Route path="/about" element={<AboutPage user={user} />}/> 
     <Route path="/mypodcasts" element={<Userpodcasts user={user} />}/> 
     <Route path="/addpodcast" element={<AddPodcast user1={user} />}/> 
+    <Route path="/editpodcast/:editID" element={<AddPodcast user1={user} />}/> 
     <Route path="/" element={user==='notUser'?(<Login/>):(<Home/>)}/> 
     <Route path="/register" element= {user==='notUser'?(<Signup/>):(<Home/>)}/>
     <Route path="/login" element={user==='notUser'?(<Login/>):(<Home/>)}/>

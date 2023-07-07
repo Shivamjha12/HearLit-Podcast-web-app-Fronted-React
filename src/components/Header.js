@@ -2,6 +2,7 @@ import React,{ useEffect } from "react";
 import { Navbar,Nav, Container,Row, Col } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
 import {useNavigate} from "react-router-dom";
+import Cookies from 'js-cookie';
 function Header(props) {
     const navigate = useNavigate();
     async function handleLogout(e){
@@ -14,7 +15,7 @@ function Header(props) {
         credentials:'include',
         body: JSON.stringify("")
         });
-
+        Cookies.remove('meraToken');
         navigate('login/');
         console.log(response);
         navigate(0);
