@@ -22,7 +22,7 @@ This is a podcast web app where users can:
 
 ## Usage
 
-The app will be available at http://localhost:3000.
+The app will be available at https://hear-lit-podcast-web-app-fronted-react.vercel.app/.
 
 ## Features
 
