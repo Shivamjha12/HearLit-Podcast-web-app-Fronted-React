@@ -23,18 +23,20 @@ function UserPodcasts({post,email}){
     <Card className="userpodcastCard" style={{"height":"8rem", "width":"80rem","margin":"1rem 1rem 1rem 8rem"}}>
       <Card.Body>
         <div className="userpodcastimgdiv">
-        <img className="userpodcastimage"  src={`${baseurl}${thumbnail}`} />
+        <img className="userpodcastimage"  src={`${baseurl}${thumbnail}`} alt="Image is not loaded"/>
         </div>
         <div className="userpodcasttitle" >
-        <p>{title} </p>
+        {description.slice(0, 100)}
         </div>
         <div>
         </div>
-        <p className="userpodcasttitle" >
-          {description.slice(0, 100)}
-        </p>
+        <div className="userpodcasttitle" >
+        <p><strong>{title}</strong></p>
+        <p style={{"margin":"2.5rem 0rem 0rem 0rem"}}>{likes} likes</p>
+        </div>
+        
          <div className="userpodcastbutton" >
-        <Button onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} style={{"height":"3rem","width":"5rem", "margin":"-1.5rem 5rem 0rem 0rem"}} variant="primary">Edit</Button>
+        <Button onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} style={{"height":"3rem","width":"5rem", "margin":"-8rem 5rem 0rem 0rem"}} variant="primary">Edit</Button>
         </div>
     </Card.Body>
     </Card>
