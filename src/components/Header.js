@@ -3,7 +3,7 @@ import { Navbar,Nav, Container,Row, Col } from "react-bootstrap";
 import Logo from "../assets/Logo.png";
 import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
-function Header(props) {
+function Header({user}) {
     const navigate = useNavigate();
     const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
     async function handleLogout(e){
@@ -25,6 +25,7 @@ function Header(props) {
 
     useEffect(() => {
       console.log("re render the navigation");
+      console.log("----------------------------------user in head------------------------",user)
     },[handleLogout])
   return (
     <>
@@ -36,7 +37,7 @@ function Header(props) {
           <Row>
             <Col md={12}>
             <Nav className="me-auto">
-              {props.user?(
+              {user!=="notUser"?(
               <>
               <Nav.Link onClick={(e)=>{navigate('/mypodcasts')}}>Your Podcast</Nav.Link>
               <Nav.Link onClick={(e)=>{navigate('/addpodcast')}}>Add Podcast</Nav.Link>

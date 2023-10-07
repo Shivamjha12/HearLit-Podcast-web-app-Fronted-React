@@ -82,9 +82,8 @@ function Home() {
   };
 
   return (
-    <>
-      <Header user={user} />
-      <Container>
+    <div className="homeMain">
+      <Container >
         <Row>
           <Col className="searchCol mt-2 ml-5" md={8} >
             <Form onSubmit={(e) => { onSubmit(e) }} className="d-flex">
@@ -105,10 +104,9 @@ function Home() {
       <Container>
       <div>
       <Button
-            className="scroll-button left"
+            className="scroll-buttonleft"
             variant="light"
             onClick={() => handleScroll(-600)}
-            style={{"margin":"0rem 0rem 0rem 4rem"}}
           >
             <BsChevronLeft />
           </Button>
@@ -142,10 +140,9 @@ function Home() {
           </div>
         </div>
         <Button
-            className="scroll-button right"
+            className="scroll-buttonright"
             variant="light"
             onClick={() => handleScroll(600)}
-            style={{"margin":"0rem 4rem 0rem 0rem"}}
           >
             <BsChevronRight />
           </Button>
@@ -171,7 +168,7 @@ function Home() {
         </div>
         
       </Container>
-    </>
+    </div>
   );
 }
 

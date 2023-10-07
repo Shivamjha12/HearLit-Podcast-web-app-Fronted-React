@@ -41,7 +41,7 @@ function Signup(){
     }
     return(
         <div>
-            <Header/>
+            {/* <Header/> */}
             <Container>
                 <div className="signupform">
                 <h3>Sign up</h3>

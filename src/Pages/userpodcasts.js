@@ -18,20 +18,22 @@ function Userpodcasts({ user }) {
 
   return (
     <>
-    <Header user={user} />
+    {/* <Header user={user} /> */}
     
     <div className="userpodcast">
     
       {userpodcasts.length >= 1 ? (
         userpodcasts.map((populardata) => {
           return (
+            <Row>
             <div
               key={populardata.user}
               style={{ cursor: "pointer", width: '20rem' }}
             >
               <UserPodcasts post={populardata} email={user} />
+              {/* <p>heree</p> */}
             </div>
-            
+            </Row>
           );
         })
       ) : (
@@ -39,6 +41,7 @@ function Userpodcasts({ user }) {
           <h2>No Podcasts</h2>
         </div>
       )}
+
     
     </div>
 

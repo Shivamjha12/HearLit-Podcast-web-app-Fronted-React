@@ -20,27 +20,15 @@ function UserPodcasts({post,email}){
     console.log(email,"<------------email---------------------------->")
     return(
     <Col md={12}>
-    <div>
-    <Card className="userpodcastCard" style={{"height":"8rem", "width":"80rem","margin":"1rem 1rem 1rem 8rem"}}>
-      <Card.Body>
-        <div className="userpodcastimgdiv">
-        <img className="userpodcastimage"  src={`${production_url}${thumbnail}`} alt="Image is not loaded"/>
-        </div>
-        <div className="userpodcasttitle" >
-        {description.slice(0, 100)}
-        </div>
-        <div>
-        </div>
-        <div className="userpodcasttitle" >
-        <p><strong>{title}</strong></p>
-        <p style={{"margin":"2.5rem 0rem 0rem 0rem"}}>{likes} likes</p>
-        </div>
-        
-         <div className="userpodcastbutton" >
-        <Button onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} style={{"height":"3rem","width":"5rem", "margin":"-8rem 5rem 0rem 0rem"}} variant="primary">Edit</Button>
-        </div>
-    </Card.Body>
-    </Card>
+    <div className="usercardextra">
+
+    </div>
+    <div className="userpodcastcard">
+      <img className="userpodcastcard_img" style={{"height":"8rem", "width":"8rem"}} src={`${production_url}${thumbnail}`} alt="Image is not loaded" />
+      <h3 className="userpodcastcard_title">{title.slice(0,100)}</h3>
+      <p className="userpodcastcard_description" >{description.slice(0,120)}</p>
+      <Button className="userpodcastcard_button" onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} variant="primary">Edit</Button>
+      <Button className="userpodcastcard_delete_button" onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} variant="primary">Delete</Button>
     </div>
     </Col>
 

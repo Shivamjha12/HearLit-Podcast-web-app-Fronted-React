@@ -4,7 +4,7 @@ import Header from '../components/Header';
 function AboutPage({user}) {
   return (
     <>
-    <Header user={user} />
+    {/* <Header user={user} /> */}
     <div className="about-container">
       
       <h1>About Page</h1>

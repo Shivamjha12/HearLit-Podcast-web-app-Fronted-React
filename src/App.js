@@ -1,5 +1,6 @@
 import './App.css';
 import React,{ useState,useEffect } from "react";
+import { Container, Row, Col } from 'react-bootstrap';
 import Login from './Pages/login_page';
 import AboutPage from './Pages/about';
 import Signup from './Pages/signup_page';
@@ -48,7 +49,7 @@ function App() {
             
         }
     )();
-},[user]);
+},[user,meraToken]);
 
   if(user==null){
     return <div className="loader-container">
@@ -56,7 +57,8 @@ function App() {
     </div>
   }
   return (
-    <>
+    <div className="Main">
+    <Header user={user} />
     <Routes>
     <Route path="/about" element={<AboutPage user={user} />}/> 
     <Route path="/mypodcasts" element={<Userpodcasts user={user} />}/> 
@@ -67,7 +69,7 @@ function App() {
     <Route path="/login" element={user==='notUser'?(<Login/>):(<Home/>)}/>
     <Route path="/podcast/:podcastID" element= {<Podcastpage user={user} />} />
     </Routes>
-    </>
+    </div>
   );
   }
 

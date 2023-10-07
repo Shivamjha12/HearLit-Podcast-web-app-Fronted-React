@@ -57,10 +57,11 @@ function Podcastpage({user}){
         }
     ,[podcastID]);
     return(
-    <div>
+    <div class="pcp">
         <div className="podcastpagemain1">
-        <Header user={user} />
+        {/* <Header user={user} /> */}
         <Container className="podcastpagemain">
+            
             <Row className="podcastpagerow1">
                 <Col md="auto">
                 <img className="podcastpageimg" src={`${production_url}${thumbnail}`} />
@@ -75,7 +76,6 @@ function Podcastpage({user}){
                         <Actions actionData={actionData} />
                         </div>
                     </Col>
-                
                 <p className="podcastpagelikes">Liked by {likes}</p>
                 </Col>
             </Row>
@@ -87,6 +87,7 @@ function Podcastpage({user}){
             </Row>
             <Row><Controls post={podcastdata}/></Row>
         </Container>
+        
         </div>
     </div>
     

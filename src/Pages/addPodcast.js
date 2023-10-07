@@ -96,7 +96,7 @@ function AddPodcast({user1}){
         
 
     return(<div >
-        <Header user={user1} />
+        {/* <Header user={user1} /> */}
         <Container>
                 <div className="podcast_form my-5">
                 {id===''?<h3>Add your podcast</h3>:<h3>Edit Your Podcast Details</h3>}
