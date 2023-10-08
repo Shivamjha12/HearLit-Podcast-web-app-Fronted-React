@@ -21,13 +21,13 @@ function Podcasts({post,email}){
     <Card className="podcastCard" style={{"margin":"0rem 0.5rem 0rem 0rem"}}>
       <Card.Img className="podcastImg" variant="top" style={{"height":"15rem", "width":"15rem"}} src={`${production_url}${thumbnail}`} />
       <Card.Body>
-        <Card.Title>{title} </Card.Title>
+        <Card.Title>{title.slice(0,30)} </Card.Title>
         <Card.Text>{likes} people like this</Card.Text>
         {/* <Card.Text>
           {description.slice(0, 100)}
         </Card.Text> */}
         
-        <Button onClick={()=>{navigate(`/podcast/${postid}`,{ state: { prop1: email} });}} variant="primary">Go somewhere</Button>
+        <Button onClick={()=>{navigate(`/podcast/${postid}`,{ state: { prop1: email} });}} variant="primary">View</Button>
       </Card.Body>
     </Card>
     

@@ -28,7 +28,7 @@ function UserPodcasts({post,email}){
       <h3 className="userpodcastcard_title">{title.slice(0,100)}</h3>
       <p className="userpodcastcard_description" >{description.slice(0,120)}</p>
       <Button className="userpodcastcard_button" onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} variant="primary">Edit</Button>
-      <Button className="userpodcastcard_delete_button" onClick={()=>{navigate(`/editpodcast/${postid}`,{ state: { prop1: email} });}} variant="primary">Delete</Button>
+      <Button className="userpodcastcard_delete_button" onClick={()=>{}} variant="primary">Delete</Button>
     </div>
     </Col>
 
