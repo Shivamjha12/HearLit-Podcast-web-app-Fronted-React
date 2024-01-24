@@ -15,7 +15,7 @@ function Podcasts({post,email}){
     const navigate = useNavigate();
     const { title,postid, thumbnail, likes, file} = post;
     const baseurl = 'http://localhost:8000';
-    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+    const production_url = 'https://hearlitpodcast.onrender.com';
     console.log(email,"<------------email---------------------------->")
     return(
     <Card className="podcastCard" style={{"margin":"0rem 0.5rem 0rem 0rem"}}>

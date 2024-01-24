@@ -16,7 +16,7 @@ function UserPodcasts({post,email}){
     const navigate = useNavigate();
     const { title,postid,description, thumbnail, likes, file} = post;
     const baseurl = 'http://localhost:8000';
-    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+    const production_url = 'https://hearlitpodcast.onrender.com';
     console.log(email,"<------------email---------------------------->")
     return(
     <Col md={12}>

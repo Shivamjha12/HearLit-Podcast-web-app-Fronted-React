@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import Cookies from 'js-cookie';
 function Header({user}) {
     const navigate = useNavigate();
-    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+    const production_url = 'https://hearlitpodcast.onrender.com';
     async function handleLogout(e){
       e.preventDefault();
       const response = await fetch(`${production_url}/api-user/logout`,{

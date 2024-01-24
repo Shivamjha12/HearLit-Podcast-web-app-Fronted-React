@@ -8,7 +8,7 @@ function Login(){
     // const [jwt,setJwt]=useState('');
     const [email,setEmail]=useState('');
     const [password,setPassword]=useState('');
-    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+    const production_url = 'https://hearlitpodcast.onrender.com';
     const onSubmit = async (e)=>{
         e.preventDefault();
         const signupData = {

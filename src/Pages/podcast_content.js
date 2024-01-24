@@ -8,7 +8,7 @@ import { useLocation,Link, useNavigate, useParams } from "react-router-dom";
 import Header from '../components/Header';
 // import { useLocation } from 'react-router-dom';
 function Podcastpage({user}){
-    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+    const production_url = 'https://hearlitpodcast.onrender.com';
     const post = {
         "user": 2,
         "title": "Finshots Daily",

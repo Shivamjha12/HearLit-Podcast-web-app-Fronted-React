@@ -6,7 +6,7 @@ function Controls({post}) {
   const [toggleRepeat,setToggleRepeat]=useState()
   const { title, thumbnail, likes, speaker, file} = post;
   const baseurl = 'http://localhost:8000';
-  const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+  const production_url = 'https://hearlitpodcast.onrender.com';
   function handleEnd(){
     console.log("end");
   }

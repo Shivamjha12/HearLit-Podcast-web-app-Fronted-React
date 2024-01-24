@@ -17,7 +17,7 @@ function Home() {
   const [isSearch, setIsSearch] = useState(false);
   const [user, setUser] = useState('');
   const [meraToken,setMeraToken] = useState('None')
-  const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+  const production_url = 'https://hearlitpodcast.onrender.com';
   async function popularPodcast() {
     const response = await fetch(`${production_url}/api-podcast/podcastFav/${user}/`);
     const content = await response.json();

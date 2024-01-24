@@ -16,7 +16,7 @@ function AddPodcast({user1}){
     const [editPodcastdata,setEditpodcastdata] = useState([]);
     const {editID} = useParams()
     const baseurl = 'http://localhost:8000';
-    const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+    const production_url = 'https://hearlitpodcast.onrender.com';
     useEffect(()=>{
         setUser(user1)
         if(editID){

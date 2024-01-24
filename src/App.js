@@ -15,7 +15,7 @@ import {useNavigate} from "react-router-dom";
 import { Route, Routes,Navigate,Redirect  } from "react-router-dom";
 import Cookies from 'js-cookie';
 function App() {
-  const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+  const production_url = 'https://hearlitpodcast.onrender.com';
   const [user,setUser] = useState(null);
   const navigate = useNavigate();
   const [meraToken,setMeratoken] = useState('None');

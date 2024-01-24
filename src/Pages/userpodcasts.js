@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 function Userpodcasts({ user }) {
   const [userpodcasts, setUserpodcasts] = useState([]);
-  const production_url = 'https://hearlit-podcast-web-app-backend-djangorest.shivamkrjha.repl.co'
+  const production_url = 'https://hearlitpodcast.onrender.com';
   async function getUserpodcasts() {
     const response = await fetch(`${production_url}/api-podcast/podcast/user/${user}`);
     const content = await response.json();
